@@ -1,0 +1,284 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Assignment 1.2 - Week 1\&2},
+  pdfauthor={Aarti Ramani},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Assignment 1.2 - Week 1\&2}
+\author{Aarti Ramani}
+\date{2023-06-13}
+
+\begin{document}
+\maketitle
+
+\hypertarget{load-required-libraries}{%
+\paragraph{Load required libraries}\label{load-required-libraries}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readxl)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(RColorBrewer)   }
+\FunctionTok{library}\NormalTok{(plotly)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'plotly'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:ggplot2':
+## 
+##     last_plot
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:stats':
+## 
+##     filter
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:graphics':
+## 
+##     layout
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(webshot)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{read-xls-into-a-dataframe}{%
+\paragraph{Read xls into a dataframe}\label{read-xls-into-a-dataframe}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{obama\_approvals\_df }\OtherTok{\textless{}{-}} \FunctionTok{read\_excel}\NormalTok{(}\AttributeTok{path =} \StringTok{"C:/Masters/GitHub/Summer2023/DSC640{-}Data Presentation \& Visualization/Week1\&2/Data/obama{-}approval{-}ratings.xls"}\NormalTok{)}
+\FunctionTok{nrow}\NormalTok{(obama\_approvals\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 13
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(obama\_approvals\_df,}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 4
+##   Issue           Approve Disapprove  None
+##   <chr>             <dbl>      <dbl> <dbl>
+## 1 Race Relations       52         38    10
+## 2 Education            49         40    11
+## 3 Terrorism            48         45     7
+## 4 Energy Policy        47         42    11
+## 5 Foreign Affairs      44         48     8
+\end{verbatim}
+
+\hypertarget{donut-chart}{%
+\subsubsection{DONUT CHART}\label{donut-chart}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#fig \textless{}{-} obama\_approvals\_df \%\textgreater{}\% plot\_ly(labels = \textasciitilde{}Issue, values = \textasciitilde{}Approve, textposition = \textquotesingle{}outside\textquotesingle{}, \#textinfo=\textquotesingle{}percent+label\textquotesingle{}, width = 1)}
+\CommentTok{\#fig \textless{}{-} fig \%\textgreater{}\% add\_pie(hole = 0.6)}
+\CommentTok{\#fig \textless{}{-} fig \%\textgreater{}\% layout(title = list(text=\textquotesingle{}Donut charts using Plotly\textquotesingle{}), }
+\CommentTok{\#                      autosize = T ,showlegend = F)}
+\CommentTok{\#fig}
+
+
+\NormalTok{fig1 }\OtherTok{\textless{}{-}} \FunctionTok{plot\_ly}\NormalTok{(obama\_approvals\_df, }\AttributeTok{labels =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Issue, }\AttributeTok{values =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Approve, }\CommentTok{\#type = \textquotesingle{}pie\textquotesingle{},}
+        \AttributeTok{textposition =} \StringTok{\textquotesingle{}inside\textquotesingle{}}\NormalTok{,}
+        \AttributeTok{textinfo =} \StringTok{\textquotesingle{}percent+label\textquotesingle{}}\NormalTok{,}
+        \AttributeTok{text =} \SpecialCharTok{\textasciitilde{}}\FunctionTok{paste}\NormalTok{(Issue),}
+        \AttributeTok{marker =} \FunctionTok{list}\NormalTok{(}\AttributeTok{line =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}\#FFFFFF\textquotesingle{}}\NormalTok{, }\AttributeTok{width =} \DecValTok{1}\NormalTok{)),}
+        \AttributeTok{showlegend =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{fig1 }\OtherTok{\textless{}{-}}\NormalTok{ fig1 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{add\_pie}\NormalTok{(}\AttributeTok{hole =} \FloatTok{0.6}\NormalTok{)}
+\NormalTok{fig1 }\OtherTok{\textless{}{-}}\NormalTok{ fig1 }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{layout}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Donut charts using Plotly\textquotesingle{}}\NormalTok{,}
+         \AttributeTok{xaxis =} \FunctionTok{list}\NormalTok{(}\AttributeTok{showgrid =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{zeroline =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{showticklabels =} \ConstantTok{FALSE}\NormalTok{),}
+         \AttributeTok{yaxis =} \FunctionTok{list}\NormalTok{(}\AttributeTok{showgrid =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{zeroline =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{showticklabels =} \ConstantTok{FALSE}\NormalTok{))}
+\NormalTok{fig1}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Weel1-2_R_files/figure-latex/DonutChart-1.pdf}
+
+\hypertarget{stacked-bar-chart}{%
+\subsubsection{STACKED BAR CHART}\label{stacked-bar-chart}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Stacked Bar Chart}
+\NormalTok{fig }\OtherTok{\textless{}{-}} \FunctionTok{plot\_ly}\NormalTok{(obama\_approvals\_df)}
+\NormalTok{fig }\OtherTok{\textless{}{-}}\NormalTok{ fig }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{add\_trace}\NormalTok{(}\AttributeTok{x =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Issue,}\AttributeTok{y =} \SpecialCharTok{\textasciitilde{}}\NormalTok{None, }\AttributeTok{name =} \StringTok{\textquotesingle{}None\textquotesingle{}}\NormalTok{,}\AttributeTok{text =} \SpecialCharTok{\textasciitilde{}}\NormalTok{None, }\AttributeTok{type=}\StringTok{\textquotesingle{}bar\textquotesingle{}}\NormalTok{,}
+                         \AttributeTok{marker =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}rgb(127, 200, 250)\textquotesingle{}}\NormalTok{,}
+                                       \AttributeTok{line =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}rgb(8,48,107)\textquotesingle{}}\NormalTok{ )))}
+\NormalTok{fig }\OtherTok{\textless{}{-}}\NormalTok{ fig }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{add\_trace}\NormalTok{(}\AttributeTok{x =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Issue,}\AttributeTok{y =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Disapprove, }\AttributeTok{name =} \StringTok{\textquotesingle{}Disapprove\textquotesingle{}}\NormalTok{,}\AttributeTok{text =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Disapprove, }\AttributeTok{type=}\StringTok{\textquotesingle{}bar\textquotesingle{}}\NormalTok{,}
+                         \AttributeTok{marker =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}rgb(45, 167, 250)\textquotesingle{}}\NormalTok{,}
+                                       \AttributeTok{line =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}rgb(8,48,107)\textquotesingle{}}\NormalTok{)))}
+\NormalTok{fig }\OtherTok{\textless{}{-}}\NormalTok{ fig }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{add\_trace}\NormalTok{(}\AttributeTok{x =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Issue,}\AttributeTok{y =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Approve, }\AttributeTok{name =} \StringTok{\textquotesingle{}Approve\textquotesingle{}}\NormalTok{, }\AttributeTok{text =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Approve, }\AttributeTok{type=}\StringTok{\textquotesingle{}bar\textquotesingle{}}\NormalTok{,}
+                         \AttributeTok{marker =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}rgb(4, 74, 122)\textquotesingle{}}\NormalTok{,}
+                                       \AttributeTok{line =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}rgb(8,48,107)\textquotesingle{}}\NormalTok{)))}
+\NormalTok{fig }\OtherTok{\textless{}{-}}\NormalTok{ fig }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{layout}\NormalTok{(}\AttributeTok{yaxis =} \FunctionTok{list}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Count\textquotesingle{}}\NormalTok{), }\AttributeTok{barmode =} \StringTok{\textquotesingle{}stack\textquotesingle{}}\NormalTok{,}
+                      \AttributeTok{xaxis =} \FunctionTok{list}\NormalTok{(}\AttributeTok{title =} \StringTok{"Issue"}\NormalTok{, }\AttributeTok{tickangle =} \SpecialCharTok{{-}}\DecValTok{75}\NormalTok{))}
+\NormalTok{fig}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Weel1-2_R_files/figure-latex/StackedBarChart-1.pdf}
+\#\#\# BAR CHART
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Bar Chart}
+\NormalTok{fig }\OtherTok{\textless{}{-}} \FunctionTok{plot\_ly}\NormalTok{(obama\_approvals\_df,}\AttributeTok{x =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Issue,}\AttributeTok{y =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Disapprove, }\AttributeTok{name =} \StringTok{\textquotesingle{}Disapprove\textquotesingle{}}\NormalTok{,}
+               \AttributeTok{text =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Disapprove, }\AttributeTok{type=}\StringTok{\textquotesingle{}bar\textquotesingle{}}\NormalTok{,}
+               \AttributeTok{marker =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}rgb(20, 71, 252)\textquotesingle{}}\NormalTok{,}
+                             \AttributeTok{line =} \FunctionTok{list}\NormalTok{(}\AttributeTok{color =} \StringTok{\textquotesingle{}rgb(8,48,107)\textquotesingle{}}\NormalTok{))) }
+\NormalTok{fig }\OtherTok{\textless{}{-}}\NormalTok{ fig }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{layout}\NormalTok{(}\AttributeTok{yaxis =} \FunctionTok{list}\NormalTok{(}\AttributeTok{title =} \StringTok{\textquotesingle{}Count\textquotesingle{}}\NormalTok{),}
+                      \AttributeTok{xaxis =} \FunctionTok{list}\NormalTok{(}\AttributeTok{title =} \StringTok{"Issue"}\NormalTok{, }\AttributeTok{tickangle =} \SpecialCharTok{{-}}\DecValTok{75}\NormalTok{))}
+\NormalTok{fig}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Weel1-2_R_files/figure-latex/BarChart-1.pdf} \#\#\#
+LINE CHART
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Line Chart}
+
+\NormalTok{fig }\OtherTok{\textless{}{-}} \FunctionTok{plot\_ly}\NormalTok{(obama\_approvals\_df, }\AttributeTok{x =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Issue) }
+\NormalTok{fig }\OtherTok{\textless{}{-}}\NormalTok{ fig }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{add\_lines}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Disapprove, }\AttributeTok{name =} \StringTok{"Disapprove"}\NormalTok{)}
+\NormalTok{fig }\OtherTok{\textless{}{-}}\NormalTok{ fig }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{add\_lines}\NormalTok{(}\AttributeTok{y =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Approve, }\AttributeTok{name =} \StringTok{"Approve"}\NormalTok{) }
+\NormalTok{fig}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Weel1-2_R_files/figure-latex/LineChart-1.pdf} \#\#\#
+PIE CHART
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Pie Chart}
+\NormalTok{fig }\OtherTok{\textless{}{-}}\NormalTok{ obama\_approvals\_df }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{plot\_ly}\NormalTok{(}\AttributeTok{labels =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Issue, }\AttributeTok{values =} \SpecialCharTok{\textasciitilde{}}\NormalTok{Disapprove,}
+                                      \AttributeTok{type =} \StringTok{\textquotesingle{}pie\textquotesingle{}}\NormalTok{, }\AttributeTok{textposition =} \StringTok{\textquotesingle{}inside\textquotesingle{}}\NormalTok{, }
+                                      \AttributeTok{textinfo=}\StringTok{\textquotesingle{}value+label\textquotesingle{}}\NormalTok{)}
+\NormalTok{fig }\OtherTok{\textless{}{-}}\NormalTok{ fig }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{layout}\NormalTok{(}\AttributeTok{title =} \StringTok{"Pie charts using Plotly"}\NormalTok{,  }\AttributeTok{showlegend =}\NormalTok{ F) }
+\NormalTok{fig}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Weel1-2_R_files/figure-latex/PieChart-1.pdf}
+
+\end{document}

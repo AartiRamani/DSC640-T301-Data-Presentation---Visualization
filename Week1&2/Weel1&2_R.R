@@ -1,0 +1,90 @@
+---
+title: "Assignment 1.2 - Week 1&2"
+author: "Aarti Ramani"
+date: "2023-06-13"
+output:
+    pdf_document: default
+    #always_allow_html: yes
+#html_document: default
+#bibliography: citations.bib
+#biblio-style: "apalike"
+#link-citations: true 
+#always_allow_html: yes
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(global.par = TRUE) 
+```
+
+#### Load required libraries
+```{r LoadLibraries}
+library(readxl)
+library(ggplot2)
+library(RColorBrewer)   
+library(plotly)
+ 
+```
+#### Read xls into a dataframe
+```{r ReadXls}
+obama_approvals_df <- read_excel(path = "C:/Masters/GitHub/Summer2023/DSC640-Data Presentation & Visualization/Week1&2/Data/obama-approval-ratings.xls")
+nrow(obama_approvals_df)
+head(obama_approvals_df,5)
+```
+
+### DONUT CHART
+```{r DonutChart, message = FALSE, warning = FALSE}
+#Donut Chart
+fig <- obama_approvals_df %>% plot_ly(labels = ~Issue, values = ~Approve, textposition = 'inside', textinfo='percent+label')
+fig <- fig %>% add_pie(hole = 0.6)
+fig <- fig %>% layout(title = "Donut charts using Plotly",  showlegend = F) 
+fig
+```
+
+```{r :PieChart}
+#Pie Chart
+fig <- obama_approvals_df %>% plot_ly(labels = ~Issue, values = ~Disapprove,type = 'pie', textposition = 'inside', textinfo='value+label')
+fig <- fig %>% layout(title = "Pie charts using Plotly",  showlegend = F) 
+fig 
+```
+
+```{r StackedBarChart}
+
+#Stacked Bar Chart
+fig <- plot_ly(obama_approvals_df)
+fig <- fig %>% add_trace(x = ~Issue,y = ~None, name = 'None',text = ~None, type='bar',
+                         marker = list(color = 'rgb(127, 200, 250)',
+                                       line = list(color = 'rgb(8,48,107)' )))
+fig <- fig %>% add_trace(x = ~Issue,y = ~Disapprove, name = 'Disapprove',text = ~Disapprove, type='bar',
+                         marker = list(color = 'rgb(45, 167, 250)',
+                                       line = list(color = 'rgb(8,48,107)')))
+fig <- fig %>% add_trace(x = ~Issue,y = ~Approve, name = 'Approve', text = ~Approve, type='bar',
+                         marker = list(color = 'rgb(4, 74, 122)',
+                                       line = list(color = 'rgb(8,48,107)')))
+fig <- fig %>% layout(yaxis = list(title = 'Count'), barmode = 'stack',
+                      xaxis = list(title = "Issue", tickangle = -75))
+fig
+```
+
+```{r BarChart}
+
+#Bar Chart
+fig <- plot_ly(obama_approvals_df,x = ~Issue,y = ~Disapprove, name = 'Disapprove',
+               text = ~Disapprove, type='bar',
+               marker = list(color = 'rgb(20, 71, 252)',
+                             line = list(color = 'rgb(8,48,107)'))) 
+fig <- fig %>% layout(yaxis = list(title = 'Count'),
+                      xaxis = list(title = "Issue", tickangle = -75))
+fig
+```
+
+```{r LineChart}
+# Line Chart
+
+fig <- plot_ly(obama_approvals_df, x = ~Issue) 
+fig <- fig %>% add_lines(y = ~Disapprove, name = "Disapprove")
+fig <- fig %>% add_lines(y = ~Approve, name = "Approve") 
+fig
+```
