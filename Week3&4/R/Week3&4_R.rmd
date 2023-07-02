@@ -1,0 +1,94 @@
+---
+title: "Assignment 2.2 - Week 3&4 in R"
+author: "Aarti Ramani"
+date: "2023-06-27"
+output:
+  pdf_document: default
+  html_document: default
+editor_options:
+  markdown:
+    wrap: sentence
+--- 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Load required libraries
+
+```{r LoadLibraries}
+library(readxl)
+library(ggplot2)
+library(RColorBrewer)   
+library(plotly)  
+library(treemapify)
+library(treemap)
+ 
+```
+
+#### Read xls into a dataframe
+
+```{r ReadXls, warning=FALSE}
+unemployement_rate_df <- read.csv("C:/Masters/GitHub/Summer2023/DSC640-Data Presentation & Visualization/Week3&4/ex2-2/unemployement-rate-1948-2010.csv")
+nrow(unemployement_rate_df)
+head(unemployement_rate_df,5)
+```
+
+### TREE MAP
+
+```{r TreeMap, message = FALSE, warning = FALSE} 
+
+p <- ggplot(unemployement_rate_df, aes(area = Value, fill = Period, label = Period, subgroup = Year)) +
+  geom_treemap() + geom_treemap_subgroup_border() + 
+  geom_treemap_text(place = "middle",grow = F, size = 10)+
+  geom_treemap_subgroup_text(place = "top",  grow=F, alpha = 0.5, color = "white") +
+  labs(title="R - TreeMap for Unemployment Rate by Year and Month")
+p
+
+```
+
+The multidimensional chart above appears cluttered and difficult to read because of overlapping.
+Modifying the same for readability.
+
+```{r Treemap2,  warning=FALSE}
+exp_agg_df<-aggregate(unemployement_rate_df$Value,by=list(Year=unemployement_rate_df$Year),FUN=sum)
+group<-exp_agg_df$Year
+value<-exp_agg_df$x
+
+df_exp_agg<-data.frame(group,value)
+
+treemap(df_exp_agg,index="group",vSize="value",type="index",
+        title="Unemployment between 1948-2010",fontsize.title = 12)
+
+```
+
+### AREA CHART
+
+```{r AreaChart, warning=FALSE}
+ggplot(unemployement_rate_df,aes(x=Year,y=Value)) + 
+  geom_area(fill = "#20a2ab", size=0.2,alpha=0.8) +
+  ggtitle("R - Unemployment Per Year - Area Chart")
+#fig <- plot_ly(data = unemployement_rate_df, x = ~Year, y = ~Value, type = 'scatter', mode = 'lines', fill = 'tozeroy')
+#fig <- fig %>% layout(xaxis = list(title = 'Year'),
+#         yaxis = list(title = 'Unemployment Rate'),
+#         title =   "R - Stacked Area Chart for Unemployment Rate by Year")
+#fig
+
+```
+
+### STACKED AREA CHART
+
+```{r StackedAreaChart, warning=FALSE}
+ggplot(unemployement_rate_df,aes(x=Year,y=Value,fill=Period)) +
+    geom_area(color="black",size=0.2,alpha=0.8) +
+    ggtitle("R - Unemployment Per Year - Stacked Area Chart")
+```
+
+### STEP CHART
+
+```{r StepChart, warning=FALSE}
+p <-  ggplot(unemployement_rate_df, aes(Year, Value)) + geom_step()+
+  labs(title="R - Step Chart for Unemployment Rate by Year") + xlab("Year") + ylab("Unemployement Rate") 
+p
+
+```
