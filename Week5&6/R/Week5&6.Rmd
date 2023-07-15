@@ -1,0 +1,72 @@
+---
+title: "Assignment 3.2 - Week 5&6 in R"
+author: "Aarti Ramani"
+date: "2023-07-07"
+output:
+  html_document: default
+  pdf_document: default
+editor_options:
+  markdown:
+    wrap: sentence
+--- 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Load required libraries
+
+```{r LoadLibraries, warning=FALSE, message = FALSE}
+library(readxl)
+library(ggplot2)    
+library(plotly)  
+ 
+```
+
+#### Read xls into a dataframe
+
+```{r ReadXls, warning=FALSE}
+crime_rates_df <- read.csv("C:/Masters/GitHub/Summer2023/DSC640-Data Presentation & Visualization/Week5&6/ex4-2/crimerates-by-state-2005.csv")
+nrow(crime_rates_df)
+head(crime_rates_df,5)
+```
+\newpage
+### R - SCATTER PLOT
+
+```{r ScatterPlot, message=FALSE, warning=FALSE}
+fig <- plot_ly(data = crime_rates_df, x = ~population, y = ~murder) %>%
+    layout(xaxis = list(range = c(0,40000000),title = 'Population'), 
+           title="R - Scatter Plot for Population vs Murder",
+           yaxis = list(title = 'Murder Rate'))
+fig
+
+```
+\newpage
+### R - BUBBLE CHART
+
+```{r BubbleChart, message = FALSE, warning = FALSE} 
+fig <- plot_ly(crime_rates_df, x = ~population, y = ~murder, text = ~state, 
+               type = 'scatter', mode = 'markers', size = ~murder, color = ~state, #colors = 'Paired',
+        marker = list( sizemode = 'diameter'))
+fig <- fig %>% layout(xaxis = list(range = c(0,40000000),title = 'Population'), 
+           title="R - Bubble Chart for Population vs Murder by State",
+           yaxis = list(title = 'Murder Rate'))
+
+fig
+
+```
+
+\newpage
+### R -DENSITY CHART
+
+```{r DensityChart, message = FALSE, warning = FALSE} 
+
+p <- ggplot(crime_rates_df, aes(burglary))  + geom_density() +
+  geom_histogram(aes(y=..density..),bins=30,color="blue",fill="lightblue")
+  facet_wrap(~ state)
+
+fig <- ggplotly(p)
+fig <- fig %>% layout(title="R - Density Plot for Burglary",
+           yaxis = list(title = 'Murder Rate'))
+fig
+
+```
