@@ -1,0 +1,85 @@
+---
+title: "Assignment 4.2 - Week 5&6 in R"
+author: "Aarti Ramani"
+date: "2023-07-26"
+output:
+  html_document: default
+  pdf_document: default
+editor_options:
+  markdown:
+    wrap: sentence
+--- 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Load required libraries
+
+```{r LoadLibraries, warning=FALSE, message = FALSE}
+library(readxl)
+library(ggplot2)    
+library(plotly)   
+library(reshape2)
+library(mapview)
+```
+
+#### Read xls into a dataframe
+
+```{r ReadXls, warning=FALSE}
+costco_df <- read.csv("C:/Masters/GitHub/Summer2023/DSC640-Data Presentation & Visualization/Week7&8/ex5-2/costcos-geocoded.csv")
+nrow(costco_df)
+head(costco_df,5)
+
+
+ppg_df <- read.csv("C:/Masters/GitHub/Summer2023/DSC640-Data Presentation & Visualization/Week7&8/ex5-2/ppg2008.csv")
+nrow(ppg_df)
+head(ppg_df,5)
+
+```
+\newpage
+### R - HEAT MAP
+
+```{r HeatMap, message=FALSE, warning=FALSE}
+library(scales) 
+library(plyr)
+
+df_melt <- melt(ppg_df)
+
+df_melt <- ddply(df_melt, .(variable),transform,rescale=rescale(value))
+base_size <- 9
+
+ggp <- ggplot(df_melt, aes(variable,Name)) + 
+  geom_tile(aes(fill=rescale),color='white') + 
+  scale_fill_gradient(low="white",high = "steelblue")+ 
+  theme_grey(base_size = base_size) + labs(x = "", y = "") + scale_x_discrete(expand = c(0, 0)) +
+  scale_y_discrete(expand = c(0, 0)) + 
+  theme(axis.text.x=element_text(angle=90, hjust=0, vjust= 0.1)) +
+  theme(axis.text.y=element_text(hjust=0, vjust= 0.1)) +
+  ggtitle("R - 2008 BASKETBALL PLAYER POINTS PER GAME") +
+  xlab("POINTS PER GAME") + 
+  ylab("PLAYER")
+ggp  
+
+```
+\newpage
+### R - SPATIAL CHART
+
+```{r SpatialChart, message=FALSE, warning=FALSE}
+fig <- mapview(costco_df, xcol = "Longitude", ycol = "Latitude",crs = 4269, grid = FALSE, legend = TRUE,
+               geometry = TRUE, geography = "tract")
+fig
+```
+ 
+\newpage
+### R - LOLLIPOP CHART
+
+```{r LollipopChart,  message=FALSE, warning=FALSE}
+ 
+ggplot(ppg_df, aes(x=Name, y=G)) +
+geom_segment( aes(x=Name, xend=Name, y=0, yend=G)) +
+geom_point(size=4) + scale_x_discrete(guide = guide_axis(angle = 45)) +
+  ggtitle("R - Lollipop Chart for Player points vs Team G") +
+  xlab("Player Name") + 
+  ylab("Team - G")
+
+```
